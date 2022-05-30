@@ -19,9 +19,7 @@ pipeline{
     }
     stage('Docker images down'){
       steps{
-        sh 'docker rm -f redis'
-        sh 'docker rm -f myflaskapp_c'
-        sh 'docker rmi -f myflaskapp'
+        sh 'docker rm -f monapp'
       }
     }
 }
