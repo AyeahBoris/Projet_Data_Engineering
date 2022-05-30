@@ -1,25 +1,26 @@
-pipeline{
+pipeline {
   agent any
   stages {
-    stage('Build Flask app'){
-      steps{
-        sh 'docker image build -t monapp .'
+    stage('Build') {
+      steps {
+        echo 'Let\'s build the image'
+        sh 'docker build -t monapp .'
       }
     }
-      stage('Run Flask App'){
-          steps{
-            sh 'docker run -p 5001:5001 -d monapp'
-          }
-        }
-    stage('Testing'){
-      steps{
-        sh 'python integration_app.py'
-        sh 'python other_app.py'
+
+    stage('Runnning the image') {
+      steps {
+        echo 'Running the image'
+        sh 'docker run --name myflaskcontainer -d -p 5001:5001 monapp'
       }
     }
-    stage('Docker images down'){
-      steps{
-        sh 'docker rm -f monapp'
+
+    stage('Final') {
+      steps {
+      
+        sh 'docker rmi -f monapp'
+
       }
     }
-}
+
+  }
