@@ -11,8 +11,6 @@ pipeline{
             sh 'docker run -p 5001:5001 -d monapp'
           }
         }
-      }
-    }
     stage('Testing'){
       steps{
         sh 'python integration_app.py'
@@ -26,5 +24,4 @@ pipeline{
         sh 'docker rmi -f myflaskapp'
       }
     }
-  }
 }
