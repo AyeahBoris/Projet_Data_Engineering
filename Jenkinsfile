@@ -15,8 +15,8 @@ pipeline{
     }
     stage('Testing'){
       steps{
-        sh 'python test_app.py'
-        sh 'python test_app.py'
+        sh 'python integration_app.py'
+        sh 'python other_app.py'
       }
     }
     stage('Docker images down'){
